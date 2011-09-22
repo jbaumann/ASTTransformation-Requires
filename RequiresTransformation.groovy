@@ -1,5 +1,3 @@
-import static org.objectweb.asm.Opcodes.*
-
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotationNode
 import org.codehaus.groovy.ast.MethodNode
