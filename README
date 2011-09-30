@@ -1,0 +1,9 @@
+This project contains the code for different blog entries of my blog at http://joesgroovyblog.blogspot.com/
+
+Creating an AST transformation using the AstBuilder.buildFromSpec()
+- every class starting with "Requires2"
+
+Creating an AST transformation using the AstBuilder.buildFromString()
+- every class starting with "Requires" (and not "Requires2")
+
+Enjoy it, Joachim
