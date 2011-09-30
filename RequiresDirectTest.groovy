@@ -4,7 +4,8 @@ class RequiresDirectTest extends GroovyTestCase {
 		def out = new RequiresExample()
 
 		assert out.divide10By(2) == 5
+
 		def exceptionMessage = shouldFail { out.divide10By(0) }
-		assert exceptionMessage =~ /Contract violated/
+		assert exceptionMessage =~ /Precondition violated/
    }
 }

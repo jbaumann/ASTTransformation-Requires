@@ -1,3 +1,5 @@
+import java.util.Arrays
+
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotationNode
 import org.codehaus.groovy.ast.MethodNode
@@ -6,6 +8,9 @@ import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.control.CompilePhase
 import org.codehaus.groovy.control.SourceUnit
+import org.codehaus.groovy.control.messages.Message
+import org.codehaus.groovy.control.messages.SyntaxErrorMessage
+import org.codehaus.groovy.syntax.SyntaxException
 import org.codehaus.groovy.transform.ASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
 
@@ -25,9 +30,10 @@ public class RequiresTransformation implements ASTTransformation {
 	}
    
 	public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
-
+		
 		if (!checkNode(astNodes, annotationType)) {
-			// add an error message or a warning
+			//From LogASTTransformation
+			addError("Internal error: expecting [AnnotationNode, AnnotatedNode] but got: " + Arrays.asList(astNodes), astNodes[0], sourceUnit);
 			return
 		}
 
@@ -55,6 +61,17 @@ public class RequiresTransformation implements ASTTransformation {
 		AstBuilder ab = new AstBuilder()
 		List<ASTNode> res = ab.buildFromString(CompilePhase.SEMANTIC_ANALYSIS, false, statements)
 		BlockStatement bs = res[0]
+
 		return bs
 	}
+	
+	public void addError(String msg, ASTNode node, SourceUnit source) {
+		//From LogASTTransformation
+		int line = node.getLineNumber()
+		int col = node.getColumnNumber()
+		SyntaxException se = new SyntaxException(msg + '\n', line, col)
+		Message message = new SyntaxErrorMessage(se, source)
+		source.getErrorCollector().addErrorAndContinue(message);
+	}
+
 }
