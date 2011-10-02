@@ -51,12 +51,13 @@ public class Requires2Transformation implements ASTTransformation {
 	
 	IfStatement createStatements(ClosureExpression closureAST, SourceUnit sourceUnit) {
 
-		//String source = convertToSource(closureAST, sourceUnit)
-		//def statements = "throw new Exception('Precondition violated: $source')"
+		String source = convertToSource(closureAST, sourceUnit)
+		def statements = "throw new Exception('Precondition violated: $source')"
 		AstBuilder ab = new AstBuilder()
-		//BlockStatement exception = ab.buildFromString(CompilePhase.SEMANTIC_ANALYSIS, false, statements)[0]
+		BlockStatement exception = ab.buildFromString(CompilePhase.SEMANTIC_ANALYSIS, false, statements)[0]
 		
-		BlockStatement exception = ab.buildFromCode {throw new Exception("Precondition violated in ${this.class}") }[0]
+		// Alternatively, create the exception AST using buildFromCode()
+		// BlockStatement exception = ab.buildFromCode {throw new Exception("Precondition violated in ${this.class}") }[0]
 		
 		List<ASTNode> res = ab.buildFromSpec {
 			ifStatement {
