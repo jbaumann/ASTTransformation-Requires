@@ -32,8 +32,10 @@ public class RequiresTransformation implements ASTTransformation {
 	public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
 		
 		if (!checkNode(astNodes, annotationType)) {
-			//From LogASTTransformation
-			addError("Internal error: expecting [AnnotationNode, AnnotatedNode] but got: " + Arrays.asList(astNodes), astNodes[0], sourceUnit);
+			if (astNodes) {
+				//From LogASTTransformation
+				addError("Internal error: expecting [AnnotationNode, AnnotatedNode] but got: " + Arrays.asList(astNodes), astNodes[0], sourceUnit);
+			}
 			return
 		}
 
