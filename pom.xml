@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.scrum_master</groupId>
+  <artifactId>groovy-ast</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <description>
+    The original code was taken from a series of five blog posts by Joachim Baumann ("Joe")
+    in "Joe's Groovy-Blog". The initial post is:
+    http://joesgroovyblog.blogspot.com/2011/09/ast-transformations-compiler-phases-and.html
+    The up-stream repository I forked is:
+    https://github.com/jbaumann/ASTTransformation-Requires
+
+    I also got some help for fixing one up-stream bug from Tucker Pelletier ("virtualdogbert")
+    and took a little code snippet from:
+    https://github.com/virtualdogbert/Enforcer/tree/17d9b12ef35f99d07ae7fa100f17ef9c222bc640
+
+    Thanks to both Joachim and Tucker.
+  </description>
+
+  <organization>
+    <name>Scrum-Master.de - Agile Project Management</name>
+    <url>https://scrum-master.de</url>
+  </organization>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <version.groovy>3.0.2</version.groovy>
+    <version.groovy-eclipse-compiler>3.6.0-03</version.groovy-eclipse-compiler>
+    <version.groovy-eclipse-batch>3.0.2-02</version.groovy-eclipse-batch>
+
+    <version.junit>4.12</version.junit>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <encoding>UTF8</encoding>
+          <compilerId>groovy-eclipse-compiler</compilerId>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-compiler</artifactId>
+            <version>${version.groovy-eclipse-compiler}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-batch</artifactId>
+            <version>${version.groovy-eclipse-batch}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-eclipse-compiler</artifactId>
+        <version>${version.groovy-eclipse-compiler}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.*</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy</artifactId>
+        <version>${version.groovy}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-test</artifactId>
+        <version>${version.groovy}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+    </dependency>
+  </dependencies>
+
+  <modules>
+    <module>ast</module>
+    <module>ast-test</module>
+  </modules>
+</project>

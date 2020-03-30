@@ -1,4 +1,5 @@
-import java.util.Arrays
+package de.scrum_master.groovy_ast
+
 
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotationNode
@@ -16,9 +17,9 @@ import org.codehaus.groovy.transform.GroovyASTTransformation
 
 @GroovyASTTransformation(phase = CompilePhase.SEMANTIC_ANALYSIS)
 public class RequiresTransformation implements ASTTransformation {
-	
+
 	def annotationType = Requires.class.name
-	
+
 	private boolean checkNode(astNodes, annotationType) {
 		if (! astNodes) return false
 		if (! astNodes[0]) return false
@@ -28,9 +29,8 @@ public class RequiresTransformation implements ASTTransformation {
 		if (!(astNodes[1] instanceof MethodNode)) return false
 		true
 	}
-   
+
 	public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
-		
 		if (!checkNode(astNodes, annotationType)) {
 			if (astNodes) {
 				//From LogASTTransformation
@@ -41,7 +41,7 @@ public class RequiresTransformation implements ASTTransformation {
 
 		MethodNode annotatedMethod = astNodes[1]
 		def annotationExpression = astNodes[0].members.value
-		
+
 		if (annotationExpression.class != ConstantExpression) {
 			// add better error handling
 			return
@@ -49,11 +49,11 @@ public class RequiresTransformation implements ASTTransformation {
 
 		String annotationValueString = annotationExpression.value
 		BlockStatement block = createStatements(annotationValueString)
-		
+
 		def methodStatements = annotatedMethod.code.statements
 		methodStatements.add(0, block)
 	}
-	
+
 	BlockStatement createStatements(String clause) {
 		def statements = """
 			if(!($clause)) { 
@@ -66,7 +66,7 @@ public class RequiresTransformation implements ASTTransformation {
 
 		return bs
 	}
-	
+
 	public void addError(String msg, ASTNode node, SourceUnit source) {
 		//From LogASTTransformation
 		int line = node.getLineNumber()

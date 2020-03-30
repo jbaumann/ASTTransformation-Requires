@@ -1,15 +1,20 @@
+package de.scrum_master.groovy_ast
 
+import org.junit.Test
 
-class RequiresClassloaderTest extends GroovyTestCase {
-			
+import static groovy.test.GroovyAssert.shouldFail
+
+class RequiresClassloaderTest {
+
+	@Test
 	public void testInvokeUnitTest() {
-		def file = new File('./RequiresExample.groovy')
+		def file = new File('src/test/groovy/de/scrum_master/groovy_ast/RequiresExample.groovy')
 		assert file.exists()
-	 
+
 		GroovyClassLoader invoker = new GroovyClassLoader()
 		def clazz = invoker.parseClass(file)
 		def out = clazz.newInstance()
-			
+
 		assert out.divide10By(2) == 5
 
 		def exceptionMessage = shouldFail { out.divide10By(0) }
