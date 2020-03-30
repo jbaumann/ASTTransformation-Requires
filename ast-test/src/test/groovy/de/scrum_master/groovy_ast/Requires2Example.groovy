@@ -7,4 +7,9 @@ public class Requires2Example {
 	public int divide10By(divisor) {
 		10/divisor
 	}
+
+	public static void main(String[] args) {
+		println new Requires2Example().divide10By(5)
+		println new Requires2Example().divide10By(0)
+	}
 }
