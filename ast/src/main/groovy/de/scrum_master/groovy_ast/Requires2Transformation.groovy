@@ -9,7 +9,7 @@ import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.classgen.VariableScopeVisitor
 import org.codehaus.groovy.control.CompilePhase
 import org.codehaus.groovy.control.SourceUnit
-import org.codehaus.groovy.control.io.FileReaderSource
+import org.codehaus.groovy.control.io.ReaderSource
 import org.codehaus.groovy.control.messages.SyntaxErrorMessage
 import org.codehaus.groovy.syntax.SyntaxException
 import org.codehaus.groovy.transform.ASTTransformation
@@ -101,7 +101,7 @@ public class Requires2Transformation implements ASTTransformation {
 			return ""
 		}
 
-		FileReaderSource sourceFileReader = sourceUnit.getSource()
+		ReaderSource sourceFileReader = sourceUnit.getSource()
 		int first = node.getLineNumber()
 		int last = node.getLastLineNumber()
 		StringBuilder result = new StringBuilder();
