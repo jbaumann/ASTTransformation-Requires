@@ -1,4 +1,4 @@
-package de.scrum_master.groovy_ast
+package de.xinaris.groovy_ast
 
 import org.junit.Test
 
@@ -7,7 +7,7 @@ import static groovy.test.GroovyAssert.shouldFail
 class RequiresClassloaderTest {
   @Test
   void testInvokeUnitTest() {
-    def file = new File('src/test/groovy/de/scrum_master/groovy_ast/RequiresExample.groovy')
+    def file = new File('src/test/groovy/de/xinaris/groovy_ast/RequiresExample.groovy')
     assert file.exists()
 
     GroovyClassLoader invoker = new GroovyClassLoader()

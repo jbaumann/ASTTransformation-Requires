@@ -1,4 +1,4 @@
-package de.scrum_master.groovy_ast
+package de.xinaris.groovy_ast
 
 class RequiresExample {
   @Requires("divisor != 0")

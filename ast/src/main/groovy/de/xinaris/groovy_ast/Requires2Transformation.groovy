@@ -1,4 +1,4 @@
-package de.scrum_master.groovy_ast
+package de.xinaris.groovy_ast
 
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotationNode
