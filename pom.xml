@@ -45,7 +45,7 @@
     <version.groovy>3.0.2</version.groovy>
     <version.groovy-eclipse-compiler>3.6.0-03</version.groovy-eclipse-compiler>
     <version.groovy-eclipse-batch>3.0.2-02</version.groovy-eclipse-batch>
-    <version.junit>4.12</version.junit>
+    <version.junit>4.13.1</version.junit>
   </properties>
 
   <build>
