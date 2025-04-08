@@ -42,7 +42,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <version.groovy>3.0.2</version.groovy>
+    <version.groovy>3.0.7</version.groovy>
     <version.groovy-eclipse-compiler>3.6.0-03</version.groovy-eclipse-compiler>
     <version.groovy-eclipse-batch>3.0.2-02</version.groovy-eclipse-batch>
     <version.junit>4.13.1</version.junit>
